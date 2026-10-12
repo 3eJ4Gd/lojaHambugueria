@@ -1,0 +1,22 @@
+# ------------------------------ Sistema ------------------------------
+Thumbs.db
+Desktop.ini
+ehthumbs.db
+.DS_Store
+desktop.ini
+
+# ------------------------------ Editores -----------------------------
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ------------------------------ Backups ------------------------------
+*.bak
+*.orig
+*-backup/
+
+# ------------------------------ Locais -------------------------------
+# Copias de configuração exportadas pelo painel (não versionar)
+brasa-burger-config*.json

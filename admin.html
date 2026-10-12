@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Painel administrativo — Brasa Burger</title>
+<meta name="theme-color" content="#050505">
+<meta name="color-scheme" content="dark">
+<meta name="robots" content="noindex, nofollow">
+
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+<a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
+
+<div class="barra-aviso" id="barra-aviso" hidden></div>
+<div class="aviso-loja" id="aviso-loja" hidden></div>
+
+<!-- ============================ CABEÇALHO ============================ -->
+<header class="cabecalho">
+  <div class="container cabecalho__inner">
+    <a class="marca" href="index.html" aria-label="Brasa Burger — página inicial">
+      <svg class="marca__simbolo" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+        <path d="M20 4c0 5 3.4 6.6 6.2 9.4 1.9 1.9 3.3 4 3.3 6.9 0 4.7-3.9 8.6-8.8 8.6S11.9 25 11.9 20.3c0-2.7 1.2-4.8 3.1-6.6.4 1.7 1.2 2.8 2.5 3.4.9-3.6-.4-8.9 2.5-13.1z" fill="#F5A623"/>
+        <path d="M8.5 29.6h23c.4 0 .8.1 1.1.2-1.2 4.6-6.4 7.9-12.6 7.9S8.6 34.4 7.4 29.8c.3-.1.7-.2 1.1-.2z" fill="#C8322B"/>
+        <path d="M11.4 26.9h17.2a11 11 0 0 1-17.2 0z" fill="#E8B878" opacity=".9"/>
+      </svg>
+      <span class="marca__texto"><span>Brasa</span><span>Burger</span></span>
+    </a>
+
+    <nav class="nav" id="nav-principal" aria-label="Navegação principal">
+      <a data-nav href="index.html">Início</a>
+      <a data-nav href="cardapio.html">Cardápio</a>
+      <a data-nav href="admin.html">Painel</a>
+    </nav>
+
+    <div class="acoes">
+      <a class="btn btn--fantasma btn--peq" href="cardapio.html">Ver site</a>
+      <button class="btn btn--ouro-escuro btn--peq" type="button" id="btn-sair" hidden>Sair</button>
+    </div>
+  </div>
+</header>
+
+<main id="conteudo">
+
+  <!-- ============================== LOGIN ============================= -->
+  <section class="login-tela" id="tela-login">
+    <div class="login-caixa">
+      <p class="kicker">Área restrita</p>
+      <h1>Painel administrativo</h1>
+      <p class="sub">Entre para gerenciar produtos, preços, horários e pedidos.</p>
+
+      <div class="login-erro" id="login-erro" hidden></div>
+
+      <form id="form-login" novalidate>
+        <div class="campo-grupo">
+          <label class="campo-rotulo" for="login-usuario">Usuário</label>
+          <input class="campo" type="text" id="login-usuario" autocomplete="username" required>
+        </div>
+        <div class="campo-grupo">
+          <label class="campo-rotulo" for="login-senha">Senha</label>
+          <input class="campo" type="password" id="login-senha" autocomplete="current-password" required>
+        </div>
+        <button class="btn btn--ouro btn--bloco" type="submit">Entrar</button>
+      </form>
+
+      <p class="login-aviso">
+        <strong>Atenção:</strong> em um site sem servidor, esta proteção é apenas uma barreira local de
+        conveniência. Antes de publicar, proteja este endereço com autenticação no servidor
+        (ex.: senha na hospedagem) e troque a senha padrão em <em>Loja → Acesso</em>.
+      </p>
+      <p class="login-aviso" id="login-dica" hidden></p>
+    </div>
+  </section>
+
+  <!-- ============================== PAINEL ============================ -->
+  <div class="container painel-grade" id="tela-painel" hidden>
+
+    <nav class="menu-lateral" aria-label="Seções do painel">
+      <p class="menu-lateral__titulo">Gerenciar</p>
+      <a href="#painel" data-sec="painel" class="ativo">
+        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7.5" height="7.5" rx="1.6"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.6"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.6"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.6"/></svg>
+        Visão geral
+      </a>
+      <a href="#produtos" data-sec="produtos">
+        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h16l-1 11H5z"/><path d="M8.5 9V6.6a3.5 3.5 0 0 1 7 0V9"/></svg>
+        Produtos
+      </a>
+      <a href="#opcoes" data-sec="opcoes">
+        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/><circle cx="9" cy="6" r="2.2" fill="var(--preto-3)"/><circle cx="15" cy="12" r="2.2" fill="var(--preto-3)"/><circle cx="8" cy="18" r="2.2" fill="var(--preto-3)"/></svg>
+        Adicionais
+      </a>
+      <a href="#loja" data-sec="loja">
+        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 14.5a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1V21a2 2 0 1 1-4 0v-.2a1.6 1.6 0 0 0-2.7-1.1l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.6 1.6 0 0 0-1.1-2.7H3a2 2 0 1 1 0-4h.2a1.6 1.6 0 0 0 1.1-2.7l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.6 1.6 0 0 0 2.7-1.1V3a2 2 0 1 1 4 0v.2a1.6 1.6 0 0 0 2.7 1.1l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0 1.1 2.7H21a2 2 0 1 1 0 4h-.2a1.6 1.6 0 0 0-1.4 1z"/></svg>
+        Loja
+      </a>
+      <a href="#pedidos" data-sec="pedidos">
+        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/></svg>
+        Pedidos
+      </a>
+      <a href="#dados" data-sec="dados">
+        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v11"/><path d="M8 10l4 4 4-4"/><path d="M4 17v2.5A1.5 1.5 0 0 0 5.5 21h13a1.5 1.5 0 0 0 1.5-1.5V17"/></svg>
+        Dados
+      </a>
+      <div class="menu-lateral__rodape">
+        <a href="index.html">
+          <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 5l-7 7 7 7"/></svg>
+          Voltar ao site
+        </a>
+      </div>
+    </nav>
+
+    <div class="conteudo-painel">
+
+      <!-- ------------------------ VISÃO GERAL ----------------------- -->
+      <section id="sec-painel" class="ativa">
+        <div class="painel-topo">
+          <div>
+            <h2>Visão geral</h2>
+            <p>Situação da loja, pendências de configuração e resumo dos pedidos registrados.</p>
+          </div>
+          <div class="painel-acoes">
+            <button class="btn btn--ouro btn--peq" type="button" data-sec-btn="produtos">Gerenciar produtos</button>
+          </div>
+        </div>
+
+        <div class="grade-stats" id="stats"></div>
+
+        <div class="caixa">
+          <h3 class="caixa__titulo">Antes de publicar</h3>
+          <p class="caixa__sub">Clique em cada item para abrir a tela de configuração correspondente.</p>
+          <ul class="lista-checks" id="pendencias"></ul>
+        </div>
+
+        <div class="caixa">
+          <h3 class="caixa__titulo">Últimos pedidos</h3>
+          <div id="ultimos-pedidos"></div>
+        </div>
+      </section>
+
+      <!-- -------------------------- PRODUTOS ------------------------ -->
+      <section id="sec-produtos">
+        <div class="painel-topo">
+          <div>
+            <h2>Produtos e cardápio</h2>
+            <p>Cadastre, edite e organize produtos, categorias, fotos, preços, disponibilidade e adicionais.</p>
+          </div>
+          <div class="painel-acoes">
+            <button class="btn btn--fantasma btn--peq" type="button" id="btn-nova-categoria">Nova categoria</button>
+            <button class="btn btn--ouro btn--peq" type="button" id="btn-novo-produto">+ Novo produto</button>
+          </div>
+        </div>
+
+        <div class="caixa">
+          <h3 class="caixa__titulo">Categorias</h3>
+          <div class="tabela-envolucro">
+            <table class="tabela" id="tabela-categorias">
+              <thead><tr><th>Categoria</th><th>Identificador</th><th class="num">Ordem</th><th>Visível</th><th></th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="caixa">
+          <h3 class="caixa__titulo">
+            Produtos
+            <span class="selo selo--inativo" id="contagem-produtos"></span>
+          </h3>
+          <div class="tabela-envolucro">
+            <table class="tabela" id="tabela-produtos">
+              <thead>
+                <tr><th>Produto</th><th>Categoria</th><th class="num">Preço</th><th>Status</th><th class="num">Ações</th></tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ------------------------- ADICIONAIS ----------------------- -->
+      <section id="sec-opcoes">
+        <div class="painel-topo">
+          <div>
+            <h2>Adicionais e remoções</h2>
+            <p>Grupos de opções oferecidos na personalização do produto: adicionais pagos, remoções gratuitas, limites e obrigatoriedade.</p>
+          </div>
+          <div class="painel-acoes">
+            <button class="btn btn--ouro btn--peq" type="button" id="btn-novo-grupo">+ Novo grupo</button>
+          </div>
+        </div>
+        <div id="lista-grupos"></div>
+      </section>
+
+      <!-- ---------------------------- LOJA -------------------------- -->
+      <section id="sec-loja">
+        <div class="painel-topo">
+          <div>
+            <h2>Configuração da loja</h2>
+            <p>Dados de contato, horários, entrega, pagamentos e acesso ao painel.</p>
+          </div>
+        </div>
+
+        <form id="form-loja" novalidate>
+          <div class="caixa">
+            <h3 class="caixa__titulo">Identidade e contato</h3>
+            <div class="form-grade">
+              <div class="campo-grupo">
+                <label class="campo-rotulo" for="loja-nome">Nome da loja</label>
+                <input class="campo" type="text" id="loja-nome">
+              </div>
+              <div class="campo-grupo">
+                <label class="campo-rotulo" for="loja-slogan">Slogan</label>
+                <input class="campo" type="text" id="loja-slogan">
+              </div>
+              <div class="campo-grupo">
+                <label class="campo-rotulo" for="loja-whatsapp">WhatsApp (só dígitos, com DDI e DDD)</label>
+                <input class="campo" type="text" id="loja-whatsapp" inputmode="numeric" placeholder="5511999999999">
+                <p class="campo-ajuda">Ex.: 5511999999999. Deixe vazio para desativar o envio.</p>
+              </div>
+              <div class="campo-grupo">
+                <label class="campo-rotulo" for="loja-telefone">Telefone fixo</label>
+                <input class="campo" type="text" id="loja-telefone">
+              </div>
+              <div class="campo-grupo">
+                <label class="campo-rotulo" for="loja-email">E-mail</label>
+                <input class="campo" type="email" id="loja-email">
+              </div>
+              <div class="campo-grupo">
+                <label class="campo-rotulo" for="loja-mapa">Link do mapa</label>
+                <input class="campo" type="url" id="loja-mapa" placeholder="https://maps.google.com/…">
+              </div>
+            </div>
+
+            <h3 class="caixa__titulo mt-3">Endereço</h3>
+            <div class="form-grade">
+              <div class="campo-grupo">
+                <label class="campo-rotulo" for="end-logradouro">Logradouro</label>
+                <input class="campo" type="text" id="end-logradouro" placeholder="Rua, avenida, número">
+              </div>
+              <div class="campo-grupo">
+                <label class="campo-rotulo" for="end-complemento">Complemento</label>
+                <input class="campo" type="text" id="end-complemento">
+              </div>
+              <div class="campo-grupo">
+                <label class="campo-rotulo" for="end-bairro">Bairro</label>
+                <input class="campo" type="text" id="end-bairro">
+              </div>
+              <div class="campo-grupo">
+                <label class="campo-rotulo" for="end-cidade">Cidade</label>
+                <input class="campo" type="text" id="end-cidade">
+              </div>
+              <div class="campo-grupo">
+                <label class="campo-rotulo" for="end-uf">UF</label>
+                <input class="campo" type="text" id="end-uf" maxlength="2">
+              </div>
+              <div class="campo-grupo">
+                <label class="campo-rotulo" for="end-cep">CEP</label>
+                <input class="campo" type="text" id="end-cep">
+              </div>
+            </div>
+          </div>
+
+          <div class="caixa">
+            <h3 class="caixa__titulo">Horários de funcionamento</h3>
+            <div class="tabela-envolucro">
+              <table class="tabela" id="tabela-horarios">
+                <thead><tr><th>Dia</th><th>Abre</th><th>Fecha</th><th>Fechado no dia</th></tr></thead>
+                <tbody></tbody>
+              </table>
+            </div>
+            <p class="dica">
+              <strong>Como funciona:</strong> se todos os dias estiverem preenchidos, o site mostra
+              “Aberto/fechado agora” e pode bloquear pedidos fora do horário (abaixo).
+              Deixe tudo em branco para exibir “horário não configurado”.
+            </p>
+          </div>
+
+          <div class="caixa">
+            <h3 class="caixa__titulo">Entrega e retirada</h3>
+            <div class="grade-checks" style="margin-bottom:16px">
+              <label class="checkbox-linha" id="lbl-entrega"><input type="checkbox" id="loja-aceita-entrega"><span>Aceita entrega<small>Exibe a opção de entrega no checkout</small></span></label>
+              <label class="checkbox-linha" id="lbl-retirada"><input type="checkbox" id="loja-aceita-retirada"><span>Aceita retirada<small>Exibe a opção de retirada no local</small></span></label>
+              <label class="checkbox-linha" id="lbl-fora-horario"><input type="checkbox" id="loja-fora-horario"><span>Aceitar pedidos fora do horário<small>Se desmarcado, o checkout bloqueia quando a loja estiver fechada</small></span></label>
+            </div>
+
+            <div class="form-grade">
+              <div class="campo-grupo">
+                <label class="campo-rotulo" for="loja-taxa">Taxa de entrega (R$)</label>
+                <input class="campo" type="text" id="loja-taxa" inputmode="decimal" placeholder="0,00">
+              </div>
+              <div class="campo-grupo">
+                <label class="campo-rotulo" for="loja-minimo">Pedido mínimo (R$)</label>
+                <input class="campo" type="text" id="loja-minimo" inputmode="decimal" placeholder="0,00">
+              </div>
+              <div class="campo-grupo">
+                <label class="campo-rotulo" for="loja-tempo">Tempo estimado</label>
+                <input class="campo" type="text" id="loja-tempo" placeholder="35 a 50 min">
+              </div>
+              <div class="campo-grupo">
+                <label class="campo-rotulo" for="loja-pagamentos">Formas de pagamento (uma por linha)</label>
+                <textarea class="campo" id="loja-pagamentos" rows="4" placeholder="Pix&#10;Dinheiro&#10;Cartão na entrega"></textarea>
+              </div>
+              <div class="campo-grupo">
+                <label class="campo-rotulo" for="loja-bairros">Bairros atendidos (um por linha)</label>
+                <textarea class="campo" id="loja-bairros" rows="4" placeholder="Centro&#10;Jardim Aeroporto"></textarea>
+              </div>
+              <div class="campo-grupo">
+                <label class="campo-rotulo" for="loja-aviso">Aviso no topo do site</label>
+                <textarea class="campo" id="loja-aviso" rows="4" placeholder="Ex.: Pedidos até as 22h30."></textarea>
+                <p class="campo-ajuda">Se vazio, nenhum aviso é exibido.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="caixa">
+            <h3 class="caixa__titulo">Preços e exibição</h3>
+            <label class="checkbox-linha" id="lbl-ilustrativos">
+              <input type="checkbox" id="loja-ilustrativos">
+              <span>Preços são de demonstração
+                <small>Enquanto marcado, o site exibe o aviso de modo demonstração. Desmarque somente após informar os preços reais.</small>
+              </span>
+            </label>
+          </div>
+
+          <div class="caixa">
+            <h3 class="caixa__titulo">Acesso ao painel</h3>
+            <div class="form-grade form-grade--2">
+              <div class="campo-grupo">
+                <label class="campo-rotulo" for="admin-usuario">Usuário</label>
+                <input class="campo" type="text" id="admin-usuario" autocomplete="off">
+              </div>
+              <div class="campo-grupo">
+                <label class="campo-rotulo" for="admin-senha">Senha</label>
+                <input class="campo" type="text" id="admin-senha" autocomplete="off">
+              </div>
+            </div>
+            <p class="dica dica--perigo">
+              <strong>Limite de segurança:</strong> a senha fica gravada neste navegador e o acesso é
+              local. Não é adequada para proteger dados sensíveis. Antes de publicar, aplique uma senha
+              no servidor para esta pasta.
+            </p>
+          </div>
+
+          <div class="painel-acoes">
+            <button class="btn btn--ouro" type="submit">Salvar configurações</button>
+            <button class="btn btn--fantasma" type="button" id="btn-descartar-loja">Descartar alterações</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- --------------------------- PEDIDOS ------------------------ -->
+      <section id="sec-pedidos">
+        <div class="painel-topo">
+          <div>
+            <h2>Gestão de pedidos</h2>
+            <p>Pedidos enviados pelo site. Atualize o status conforme o atendimento acontece.</p>
+          </div>
+          <div class="painel-acoes">
+            <label class="campo-rotulo oculto" for="filtro-status">Filtrar status</label>
+            <select class="campo" id="filtro-status" style="min-height:42px;width:auto">
+              <option value="">Todos os status</option>
+              <option value="aguardando">Aguardando confirmação</option>
+              <option value="recebido">Recebido</option>
+              <option value="em_preparo">Em preparo</option>
+              <option value="saiu">Saiu para entrega</option>
+              <option value="concluido">Concluído</option>
+              <option value="cancelado">Cancelado</option>
+            </select>
+          </div>
+        </div>
+        <div id="lista-pedidos"></div>
+      </section>
+
+      <!-- ---------------------------- DADOS ------------------------- -->
+      <section id="sec-dados">
+        <div class="painel-topo">
+          <div>
+            <h2>Dados e backup</h2>
+            <p>As alterações ficam gravadas neste navegador. Exporte o JSON para aplicar em outro dispositivo ou tornar as mudanças permanentes no arquivo de configuração.</p>
+          </div>
+        </div>
+
+        <div class="caixa">
+          <h3 class="caixa__titulo">Exportar configuração</h3>
+          <p class="caixa__sub">Gera um arquivo com produtos, categorias, adicionais, loja e horários.</p>
+          <div class="painel-acoes">
+            <button class="btn btn--ouro btn--peq" type="button" id="btn-exportar">Baixar JSON</button>
+            <button class="btn btn--fantasma btn--peq" type="button" id="btn-copiar-json">Copiar JSON</button>
+          </div>
+        </div>
+
+        <div class="caixa">
+          <h3 class="caixa__titulo">Importar configuração</h3>
+          <p class="caixa__sub">Cole um JSON exportado anteriormente. A importação substitui a configuração atual.</p>
+          <textarea class="area-texto" id="json-entrada" spellcheck="false" placeholder='{"versao": 1, "loja": {…}, "produtos": […]}'></textarea>
+          <div class="painel-acoes mt-2">
+            <button class="btn btn--ouro btn--peq" type="button" id="btn-importar">Importar JSON</button>
+            <button class="btn btn--fantasma btn--peq" type="button" id="btn-colar">Colar da área de transferência</button>
+          </div>
+          <p class="dica">
+            <strong>Como tornar definitivo:</strong> edite <code>js/data.js</code> com os valores
+            exportados, ou apague o registro <code>brasa_db_v1</code> do armazenamento local para
+            voltar ao conteúdo do arquivo.
+          </p>
+        </div>
+
+        <div class="caixa">
+          <h3 class="caixa__titulo">Restaurar</h3>
+          <div class="painel-acoes">
+            <button class="btn btn--perigo btn--peq" type="button" id="btn-resetar-loja">Apagar alterações da loja</button>
+            <button class="btn btn--perigo btn--peq" type="button" id="btn-resetar-pedidos">Apagar todos os pedidos</button>
+          </div>
+          <p class="dica dica--perigo"><strong>Irreversível:</strong> as ações acima apagam os dados gravados neste navegador.</p>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<div id="form-modal-host"></div>
+
+<footer class="rodape secao--comprimida">
+  <div class="container rodape__pe">
+    <p>© <span data-ano>2026</span> <span id="rodape-loja-nome">Brasa Burger</span> · Painel administrativo</p>
+    <p><a href="index.html">Voltar ao site</a></p>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/store.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/pedidos.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Brasa Burger — Hambúrgueres artesanais | Sabor que impressiona</title>
+<meta name="description" content="Brasa Burger: hambúrgueres artesanais, combos e acompanhamentos. Monte seu pedido no cardápio interativo e envie pelo WhatsApp para entrega ou retirada.">
+<meta name="theme-color" content="#050505">
+<meta name="color-scheme" content="dark">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Brasa Burger">
+<meta property="og:title" content="Brasa Burger — Não é só hambúrguer. É brasa, sabor e atitude.">
+<meta property="og:description" content="Hambúrgueres irresistíveis, combinações marcantes e aquele sabor que pede mais uma mordida.">
+<meta property="og:image" content="assets/img/hero.jpg">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preload" as="image" href="assets/img/hero.jpg" fetchpriority="high">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/home.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "Brasa Burger",
+  "slogan": "Sabor que impressiona.",
+  "servesCuisine": ["Hambúrgueres artesanais"],
+  "hasMenu": "cardapio.html"
+}
+</script>
+</head>
+<body>
+
+<a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
+
+<div class="barra-aviso" id="barra-aviso" hidden></div>
+<div class="aviso-loja" id="aviso-loja" hidden></div>
+
+<!-- ============================ CABEÇALHO ============================ -->
+<header class="cabecalho">
+  <div class="container cabecalho__inner">
+    <a class="marca" href="index.html" aria-label="Brasa Burger — página inicial">
+      <svg class="marca__simbolo" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+        <path d="M20 4c0 5 3.4 6.6 6.2 9.4 1.9 1.9 3.3 4 3.3 6.9 0 4.7-3.9 8.6-8.8 8.6S11.9 25 11.9 20.3c0-2.7 1.2-4.8 3.1-6.6.4 1.7 1.2 2.8 2.5 3.4.9-3.6-.4-8.9 2.5-13.1z" fill="#F5A623"/>
+        <path d="M8.5 29.6h23c.4 0 .8.1 1.1.2-1.2 4.6-6.4 7.9-12.6 7.9S8.6 34.4 7.4 29.8c.3-.1.7-.2 1.1-.2z" fill="#C8322B"/>
+        <path d="M11.4 26.9h17.2a11 11 0 0 1-17.2 0z" fill="#E8B878" opacity=".9"/>
+      </svg>
+      <span class="marca__texto"><span>Brasa</span><span>Burger</span></span>
+    </a>
+
+    <nav class="nav" id="nav-principal" aria-label="Navegação principal">
+      <a data-nav href="index.html">Início</a>
+      <a data-nav href="cardapio.html">Cardápio</a>
+      <a data-nav href="index.html#montar-combo">Montar combo</a>
+      <a data-nav href="index.html#a-marca">A marca</a>
+      <a data-nav href="index.html#delivery">Delivery</a>
+      <a data-nav href="admin.html">Painel</a>
+    </nav>
+
+    <div class="acoes">
+      <a class="btn btn--ouro btn--peq" href="cardapio.html">Peça agora</a>
+      <button class="cart-btn" type="button" data-abrir-carrinho aria-label="Abrir carrinho, vazio">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h2.2l2.3 12.1a2 2 0 0 0 2 1.6h8.6a2 2 0 0 0 2-1.6L21 7H5.4"/></svg>
+        <span data-cart-badge hidden>0</span>
+      </button>
+      <button class="menu-btn" id="menu-btn" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav-principal"><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main id="conteudo">
+
+  <!-- =========================== 01 · HERO ========================== -->
+  <section class="hero" aria-labelledby="hero-titulo">
+    <div class="hero__fundo">
+      <img src="assets/img/hero.jpg" alt="Hambúrguer artesanal com queijo derretido sobre fundo escuro" width="2000" height="1333" fetchpriority="high" decoding="async">
+    </div>
+
+    <div class="container">
+      <div class="hero__conteudo">
+        <p class="hero__selo">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M12 2c1 3 3 4.4 3 7.4A3 3 0 0 1 12 12a3 3 0 0 1-3-2.6C9 6.4 11 5 12 2z"/><path d="M12 13c3.3 0 6 2.4 6 5.4S15.3 24 12 24s-6-2.4-6-5.6S8.7 13 12 13z" opacity=".55"/></svg>
+          Hamburgueria artesanal
+        </p>
+
+        <h1 class="hero__titulo" id="hero-titulo">
+          <span class="linha">Não é só hambúrguer.</span>
+          <span class="linha">É <span class="ouro">brasa</span>, sabor</span>
+          <span class="linha">e atitude.</span>
+        </h1>
+
+        <p class="hero__lead">Hambúrgueres irresistíveis, combinações marcantes e aquele sabor que pede mais uma mordida.</p>
+
+        <div class="hero__acoes">
+          <a class="btn btn--ouro btn--hero" href="cardapio.html">Peça agora</a>
+          <a class="btn btn--fantasma btn--hero" href="#mais-pedidos">Explorar cardápio</a>
+        </div>
+
+        <div class="hero__status">
+          <p class="hero__item status-loja" data-loja-status></p>
+          <p class="hero__item">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="2"/><circle cx="17.5" cy="18" r="2"/></svg>
+            <span>Delivery <strong data-loja="tempo">—</strong></span>
+          </p>
+          <p class="hero__item">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h4l1.6 5-2 1.4a12 12 0 0 0 6 6L15 14.4 20 16v4a1 1 0 0 1-1.1 1A17 17 0 0 1 3 5.1 1 1 0 0 1 4 4z"/></svg>
+            <span>Pedido pelo <strong>WhatsApp</strong></span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero__rolagem" aria-hidden="true">Role<span></span></div>
+  </section>
+
+  <!-- =========================== TICKER ============================= -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker__trilho">
+      <div class="ticker__grupo">
+        <span class="ticker__item">Carne artesanal</span>
+        <span class="ticker__item">Pão do dia</span>
+        <span class="ticker__item">Queijo que derrete</span>
+        <span class="ticker__item">Chapa na brasa</span>
+        <span class="ticker__item">Combos completos</span>
+        <span class="ticker__item">Entrega e retirada</span>
+      </div>
+      <div class="ticker__grupo">
+        <span class="ticker__item">Carne artesanal</span>
+        <span class="ticker__item">Pão do dia</span>
+        <span class="ticker__item">Queijo que derrete</span>
+        <span class="ticker__item">Chapa na brasa</span>
+        <span class="ticker__item">Combos completos</span>
+        <span class="ticker__item">Entrega e retirada</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================= 02 · MAIS PEDIDOS ==================== -->
+  <section class="secao mais-pedidos" id="mais-pedidos" aria-labelledby="t-mais">
+    <div class="container">
+      <div class="sec-titulo-linha aparecer">
+        <div>
+          <p class="kicker">Mais pedidos</p>
+          <h2 class="titulo-secao" id="t-mais">Os campeões <em>da casa</em></h2>
+        </div>
+        <p class="lead">Uma seleção dos hambúrgueres mais pedidos, com ingredientes, preço e adição direta ao seu pedido.</p>
+      </div>
+
+      <div class="grade grade--4 aparecer" id="grade-mais-pedidos"></div>
+
+      <p class="texto-centro mt-3">
+        <a class="link-ouro" href="cardapio.html">Ver cardápio completo
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+        </a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ======================= 03 · MONTE SEU COMBO ==================== -->
+  <section class="secao combo" id="montar-combo" aria-labelledby="t-combo">
+    <div class="combo__fundo" aria-hidden="true">
+      <img src="assets/img/combo-banner.jpg" alt="" width="1800" height="1200" loading="lazy" decoding="async">
+    </div>
+
+    <div class="container">
+      <div class="sec-titulo-linha aparecer">
+        <div>
+          <p class="kicker">Monte seu combo</p>
+          <h2 class="titulo-secao" id="t-combo">Sua combinação, <em>seu preço</em></h2>
+        </div>
+        <p class="lead">Escolha o burger, o acompanhamento e a bebida. O valor é calculado automaticamente a partir dos preços do cardápio.</p>
+      </div>
+
+      <div class="combo__grade aparecer">
+        <div id="montador-passos"></div>
+
+        <aside class="combo__resumo" aria-live="polite">
+          <h3 class="combo__resumo-titulo">Resumo do combo</h3>
+          <p class="combo__resumo-sub">Conforme você for escolhendo, o total é atualizado.</p>
+          <div id="montador-resumo"></div>
+          <button class="btn btn--ouro btn--bloco" type="button" id="montador-adicionar" disabled>Escolha os 3 itens</button>
+          <p class="combo__dica" id="montador-dica">Selecione burger, acompanhamento e bebida para continuar.</p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= 04 · A MARCA ========================== -->
+  <section class="secao marca-secao" id="a-marca" aria-labelledby="t-marca">
+    <div class="container">
+      <div class="marca-secao__grade">
+        <div class="marca-mosaico aparecer" id="marca-mosaico"></div>
+
+        <div class="marca-texto aparecer">
+          <p class="kicker">O sabor da Brasa</p>
+          <h2 class="titulo-secao" id="t-marca">Feito na <em>brasa</em>, feito pra você</h2>
+          <p id="marca-texto"></p>
+          <div class="passos" id="marca-passos"></div>
+        </div>
+      </div>
+
+      <div class="diferenciais" id="marca-diferenciais"></div>
+    </div>
+  </section>
+
+  <!-- ===================== 05 · COMBOS E OFERTAS ===================== -->
+  <section class="secao ofertas secao--escuro" id="ofertas" aria-labelledby="t-ofertas">
+    <div class="container">
+      <div class="sec-titulo-linha aparecer">
+        <div>
+          <p class="kicker">Combos e ofertas</p>
+          <h2 class="titulo-secao" id="t-ofertas">Combos com <em>condições claras</em></h2>
+        </div>
+        <p class="lead">Lançamentos e ofertas válidas, com preço e condições informados antes de você pedir.</p>
+      </div>
+
+      <div class="grade grade--2 aparecer" id="grade-ofertas"></div>
+      <p class="sem-ofertas oculto" id="sem-ofertas">Nenhuma promoção ativa no momento. Configure ofertas no painel administrativo.</p>
+    </div>
+  </section>
+
+  <!-- ====================== 06 · DELIVERY E LOCAL ==================== -->
+  <section class="secao" id="delivery" aria-labelledby="t-delivery">
+    <div class="container">
+      <div class="sec-titulo-linha aparecer">
+        <div>
+          <p class="kicker">Delivery e localização</p>
+          <h2 class="titulo-secao" id="t-delivery">Peça para <em>entregar</em> ou retire</h2>
+        </div>
+        <p class="lead">Horários, bairros atendidos, taxa de entrega e formas de pagamento — tudo configurável no painel.</p>
+      </div>
+
+      <div class="delivery__grade aparecer">
+        <article class="info-card">
+          <div class="info-card__ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="2"/><circle cx="17.5" cy="18" r="2"/></svg>
+          </div>
+          <h4>Entrega</h4>
+          <p>Taxa: <strong class="dourado" data-loja="taxa">—</strong></p>
+          <p>Tempo estimado: <strong data-loja="tempo">—</strong></p>
+          <p>Pedido mínimo: <strong data-loja="pedidoMinimo">—</strong></p>
+          <p>Bairros atendidos:</p>
+          <ul data-loja="bairros"></ul>
+        </article>
+
+        <article class="info-card">
+          <div class="info-card__ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h16l-1.2 11H5.2z"/><path d="M8.5 9V6.6a3.5 3.5 0 0 1 7 0V9"/></svg>
+          </div>
+          <h4>Retirada no local</h4>
+          <ul data-loja="modos"></ul>
+          <p>Endereço: <span data-loja="endereco">—</span></p>
+          <p class="mt-1"><a class="link-ouro" data-loja="mapa" href="#" hidden>Abrir no mapa
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+          </a></p>
+        </article>
+
+        <article class="info-card">
+          <div class="info-card__ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5.5" width="19" height="13" rx="2.5"/><path d="M2.5 10h19"/></svg>
+          </div>
+          <h4>Pagamento</h4>
+          <p>Formas aceitas:</p>
+          <ul data-loja="pagamentos"></ul>
+          <p class="mt-1">
+            <a class="btn btn--ouro-escuro btn--peq" data-whatsapp href="admin.html">Falar no WhatsApp</a>
+          </p>
+        </article>
+
+        <article class="info-card">
+          <div class="info-card__ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5.2l3.2 2"/></svg>
+          </div>
+          <h4>Horário de funcionamento</h4>
+          <p class="status-loja" data-loja-status></p>
+          <ul class="horarios mt-1" data-loja="horarios"></ul>
+        </article>
+      </div>
+
+      <div class="cta-final mt-4 aparecer">
+        <h2>Bateu a fome?</h2>
+        <p>Monte seu pedido no cardápio interativo e envie direto pelo WhatsApp. A loja confirma cada pedido antes de começar o preparo.</p>
+        <div class="cta-final__acoes">
+          <a class="btn btn--ouro btn--hero" href="cardapio.html">Montar meu pedido</a>
+          <a class="btn btn--fantasma btn--hero" data-whatsapp href="admin.html">Falar no WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================== RODAPÉ ============================ -->
+<footer class="rodape">
+  <div class="container">
+    <div class="rodape__grade">
+      <div class="rodape__sobre">
+        <a class="marca" href="index.html" aria-label="Brasa Burger — início">
+          <svg class="marca__simbolo" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+            <path d="M20 4c0 5 3.4 6.6 6.2 9.4 1.9 1.9 3.3 4 3.3 6.9 0 4.7-3.9 8.6-8.8 8.6S11.9 25 11.9 20.3c0-2.7 1.2-4.8 3.1-6.6.4 1.7 1.2 2.8 2.5 3.4.9-3.6-.4-8.9 2.5-13.1z" fill="#F5A623"/>
+            <path d="M8.5 29.6h23c.4 0 .8.1 1.1.2-1.2 4.6-6.4 7.9-12.6 7.9S8.6 34.4 7.4 29.8c.3-.1.7-.2 1.1-.2z" fill="#C8322B"/>
+            <path d="M11.4 26.9h17.2a11 11 0 0 1-17.2 0z" fill="#E8B878" opacity=".9"/>
+          </svg>
+          <span class="marca__texto"><span>Brasa</span><span>Burger</span></span>
+        </a>
+        <p class="lead" data-loja="slogan">Sabor que impressiona.</p>
+        <p class="status-loja mt-2" data-rodape-status></p>
+        <p class="rodape__aviso">
+          Site de demonstração: produtos, preços e horários exibidos são exemplos até serem
+          configurados no <a class="dourado" href="admin.html">painel administrativo</a>.
+        </p>
+      </div>
+
+      <div>
+        <h4>Navegação</h4>
+        <ul class="rodape__lista">
+          <li><a href="index.html">Início</a></li>
+          <li><a href="cardapio.html">Cardápio</a></li>
+          <li><a href="index.html#montar-combo">Montar combo</a></li>
+          <li><a href="index.html#ofertas">Combos e ofertas</a></li>
+          <li><a href="index.html#delivery">Delivery</a></li>
+          <li><a href="admin.html">Painel administrativo</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Atendimento</h4>
+        <ul class="rodape__lista">
+          <li><span data-loja="endereco">—</span></li>
+          <li><span data-loja="whatsapp">—</span> <span class="mudo">WhatsApp</span></li>
+          <li><span data-loja="telefone">—</span> <span class="mudo">Telefone</span></li>
+          <li><a data-loja="email" href="#">—</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Horários</h4>
+        <ul class="horarios" data-loja="horarios"></ul>
+      </div>
+    </div>
+
+    <div class="rodape__pe">
+      <p>© <span data-ano>2026</span> <span id="rodape-loja-nome">Brasa Burger</span>. Todos os direitos reservados.</p>
+      <p>Sabor que impressiona. · <a href="admin.html">Painel</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/store.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/home.js"></script>
+</body>
+</html>

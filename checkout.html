@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Finalizar pedido — Brasa Burger</title>
+<meta name="description" content="Revise seu pedido, escolha entrega ou retirada, informe pagamento e envie seu pedido da Brasa Burger pelo WhatsApp.">
+<meta name="theme-color" content="#050505">
+<meta name="color-scheme" content="dark">
+<meta name="robots" content="noindex">
+
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/checkout.css">
+</head>
+<body>
+
+<a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
+
+<div class="barra-aviso" id="barra-aviso" hidden></div>
+<div class="aviso-loja" id="aviso-loja" hidden></div>
+
+<!-- ============================ CABEÇALHO ============================ -->
+<header class="cabecalho">
+  <div class="container cabecalho__inner">
+    <a class="marca" href="index.html" aria-label="Brasa Burger — página inicial">
+      <svg class="marca__simbolo" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+        <path d="M20 4c0 5 3.4 6.6 6.2 9.4 1.9 1.9 3.3 4 3.3 6.9 0 4.7-3.9 8.6-8.8 8.6S11.9 25 11.9 20.3c0-2.7 1.2-4.8 3.1-6.6.4 1.7 1.2 2.8 2.5 3.4.9-3.6-.4-8.9 2.5-13.1z" fill="#F5A623"/>
+        <path d="M8.5 29.6h23c.4 0 .8.1 1.1.2-1.2 4.6-6.4 7.9-12.6 7.9S8.6 34.4 7.4 29.8c.3-.1.7-.2 1.1-.2z" fill="#C8322B"/>
+        <path d="M11.4 26.9h17.2a11 11 0 0 1-17.2 0z" fill="#E8B878" opacity=".9"/>
+      </svg>
+      <span class="marca__texto"><span>Brasa</span><span>Burger</span></span>
+    </a>
+
+    <nav class="nav" id="nav-principal" aria-label="Navegação principal">
+      <a data-nav href="index.html">Início</a>
+      <a data-nav href="cardapio.html">Cardápio</a>
+      <a data-nav href="index.html#montar-combo">Montar combo</a>
+      <a data-nav href="index.html#a-marca">A marca</a>
+      <a data-nav href="index.html#delivery">Delivery</a>
+      <a data-nav href="admin.html">Painel</a>
+    </nav>
+
+    <div class="acoes">
+      <a class="btn btn--ouro btn--peq" href="cardapio.html">Adicionar itens</a>
+      <button class="cart-btn" type="button" data-abrir-carrinho aria-label="Abrir carrinho, vazio">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h2.2l2.3 12.1a2 2 0 0 0 2 1.6h8.6a2 2 0 0 0 2-1.6L21 7H5.4"/></svg>
+        <span data-cart-badge hidden>0</span>
+      </button>
+      <button class="menu-btn" id="menu-btn" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav-principal"><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main id="conteudo">
+
+  <!-- ============================= TOPO ============================== -->
+  <section class="topo-checkout">
+    <div class="container">
+      <p class="kicker">Finalizar pedido</p>
+      <h1>Seu pedido <em>Brasa Burger</em></h1>
+      <p class="lead">Revise os itens, informe como deseja receber e envie o resumo pelo WhatsApp.</p>
+
+      <ol class="progresso" id="progresso">
+        <li class="progresso__passo progresso__passo--ativo" data-passo="1"><span class="progresso__num">1</span><span>Identificação</span></li>
+        <li class="progresso__passo" data-passo="2"><span class="progresso__num">2</span><span>Recebimento</span></li>
+        <li class="progresso__passo" data-passo="3"><span class="progresso__num">3</span><span>Pagamento</span></li>
+        <li class="progresso__passo" data-passo="4"><span class="progresso__num">4</span><span>Confirmação</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- =========================== CARRINHO VAZIO ======================= -->
+  <section class="container carrinho-vazio" id="checkout-vazio" hidden>
+    <h2>Seu pedido está vazio</h2>
+    <p>Adicione pelo menos um item ao carrinho para finalizar o pedido.</p>
+    <a class="btn btn--ouro btn--hero" href="cardapio.html">Ver cardápio</a>
+  </section>
+
+  <!-- ============================== FLUXO ============================= -->
+  <div class="container checkout-grade" id="checkout-grade" hidden>
+
+    <!-- ------------------------------ FORM --------------------------- -->
+    <form id="form-checkout" novalidate>
+
+      <!-- etapa 1 -->
+      <section class="painel etapa" data-etapa="1">
+        <h2 class="painel__titulo"><span class="painel__num">1</span> Identificação</h2>
+        <p class="painel__sub">Precisamos saber quem é você para a loja confirmar o pedido.</p>
+
+        <div class="linha-campos">
+          <div class="campo-grupo">
+            <label class="campo-rotulo" for="nome">Nome completo *</label>
+            <input class="campo" type="text" id="nome" name="nome" autocomplete="name" required placeholder="Como devemos chamar você">
+            <p class="campo-erro" id="erro-nome" hidden></p>
+          </div>
+          <div class="campo-grupo">
+            <label class="campo-rotulo" for="telefone">WhatsApp / telefone *</label>
+            <input class="campo" type="tel" id="telefone" name="telefone" autocomplete="tel" inputmode="numeric" required placeholder="(00) 00000-0000" maxlength="15">
+            <p class="campo-erro" id="erro-telefone" hidden></p>
+          </div>
+        </div>
+
+        <div class="campo-grupo">
+          <label class="campo-rotulo" for="email">E-mail (opcional)</label>
+          <input class="campo" type="email" id="email" name="email" autocomplete="email" placeholder="seu@email.com">
+          <p class="campo-erro" id="erro-email" hidden></p>
+          <p class="campo-ajuda">Usado apenas para contato sobre este pedido. Consulte a política de privacidade da loja (LGPD).</p>
+        </div>
+
+        <div class="acoes-etapa">
+          <a class="btn btn--fantasma" href="cardapio.html">Voltar ao cardápio</a>
+          <button class="btn btn--ouro" type="button" data-proximo="1">Continuar</button>
+        </div>
+        <div class="etapa-erro" id="erro-etapa-1" hidden></div>
+      </section>
+
+      <!-- etapa 2 -->
+      <section class="painel etapa" data-etapa="2" hidden>
+        <h2 class="painel__titulo"><span class="painel__num">2</span> Como você quer receber?</h2>
+        <p class="painel__sub">Escolha entre entrega no endereço ou retirada no local.</p>
+
+        <div class="escolhas escolhas--2" id="escolhas-modo" role="radiogroup" aria-label="Modalidade de recebimento"></div>
+
+        <div id="bloco-entrega" class="mt-3" hidden>
+          <div class="linha-campos linha-campos--rua">
+            <div class="campo-grupo">
+              <label class="campo-rotulo" for="rua">Endereço *</label>
+              <input class="campo" type="text" id="rua" autocomplete="address-line1" placeholder="Rua ou avenida">
+              <p class="campo-erro" id="erro-rua" hidden></p>
+            </div>
+            <div class="campo-grupo">
+              <label class="campo-rotulo" for="numero">Número *</label>
+              <input class="campo" type="text" id="numero" inputmode="numeric" placeholder="123">
+              <p class="campo-erro" id="erro-numero" hidden></p>
+            </div>
+          </div>
+
+          <div class="linha-campos">
+            <div class="campo-grupo">
+              <label class="campo-rotulo" for="complemento">Complemento</label>
+              <input class="campo" type="text" id="complemento" placeholder="Apto, bloco, casa">
+            </div>
+            <div class="campo-grupo" id="grupo-bairro">
+              <label class="campo-rotulo" for="bairro">Bairro *</label>
+              <select class="campo" id="bairro" required></select>
+              <p class="campo-erro" id="erro-bairro" hidden></p>
+            </div>
+          </div>
+
+          <div class="campo-grupo">
+            <label class="campo-rotulo" for="referencia">Ponto de referência</label>
+            <input class="campo" type="text" id="referencia" placeholder="Orientação para a entrega">
+          </div>
+        </div>
+
+        <div id="bloco-retirada" class="aviso-caixa aviso-caixa--amarelo" hidden>
+          <span aria-hidden="true">i</span>
+          <span>
+            <strong>Retirada no local</strong>
+            <span data-loja="endereco">—</span><br>
+            <span>Horário: <span data-loja="horarios-resumo"></span></span>
+          </span>
+        </div>
+
+        <div class="acoes-etapa">
+          <button class="btn btn--fantasma" type="button" data-voltar="2">Voltar</button>
+          <button class="btn btn--ouro" type="button" data-proximo="2">Continuar</button>
+        </div>
+        <div class="etapa-erro" id="erro-etapa-2" hidden></div>
+      </section>
+
+      <!-- etapa 3 -->
+      <section class="painel etapa" data-etapa="3" hidden>
+        <h2 class="painel__titulo"><span class="painel__num">3</span> Pagamento</h2>
+        <p class="painel__sub">Formas de pagamento aceitas pela loja.</p>
+
+        <div class="escolhas" id="escolhas-pagamento" role="radiogroup" aria-label="Forma de pagamento"></div>
+        <p class="campo-erro" id="erro-pagamento" hidden></p>
+
+        <div class="campo-grupo mt-2" id="grupo-troco" hidden>
+          <label class="campo-rotulo" for="troco">Precisa de troco para quanto?</label>
+          <input class="campo" type="text" id="troco" inputmode="numeric" placeholder="Ex.: R$ 100,00">
+        </div>
+
+        <div class="campo-grupo">
+          <label class="campo-rotulo" for="obs-geral">Observações do pedido</label>
+          <textarea class="campo" id="obs-geral" rows="3" maxlength="300" placeholder="Ex.: interfone quebrado, entregar na portaria…"></textarea>
+        </div>
+
+        <div class="acoes-etapa">
+          <button class="btn btn--fantasma" type="button" data-voltar="3">Voltar</button>
+          <button class="btn btn--ouro" type="button" data-proximo="3">Revisar pedido</button>
+        </div>
+        <div class="etapa-erro" id="erro-etapa-3" hidden></div>
+      </section>
+
+      <!-- etapa 4 -->
+      <section class="painel etapa" data-etapa="4" hidden>
+        <h2 class="painel__titulo"><span class="painel__num">4</span> Confirmação</h2>
+        <p class="painel__sub">Confira tudo antes de enviar. Você poderá ajustar na tela do WhatsApp.</p>
+
+        <div id="bloco-revisao"></div>
+
+        <div class="aviso-caixa aviso-caixa--amarelo" id="aviso-whatsapp" hidden>
+          <span aria-hidden="true">!</span>
+          <span>
+            <strong>WhatsApp ainda não configurado</strong>
+            Sem o número da loja não é possível abrir a conversa.
+            Informe o número no <a href="admin.html#loja">painel administrativo</a> — ou use “Copiar mensagem” e envie pelo canal que a loja indicar.
+          </span>
+        </div>
+
+        <div class="aviso-caixa aviso-caixa--vermelho" id="aviso-fechado" hidden>
+          <span aria-hidden="true">!</span>
+          <span><strong>Loja fechada no momento</strong><span id="aviso-fechado-texto"></span></span>
+        </div>
+
+        <div class="aviso-caixa aviso-caixa--vermelho" id="aviso-minimo" hidden>
+          <span aria-hidden="true">!</span>
+          <span><strong>Pedido mínimo não atingido</strong><span id="aviso-minimo-texto"></span></span>
+        </div>
+
+        <div class="previa">
+          <div class="previa__topo">
+            <h4>Prévia da mensagem</h4>
+            <button class="btn btn--ouro-escuro btn--peq" type="button" id="btn-copiar">Copiar mensagem</button>
+          </div>
+          <pre id="texto-whatsapp" aria-live="polite"></pre>
+        </div>
+
+        <div class="acoes-etapa">
+          <button class="btn btn--fantasma" type="button" data-voltar="4">Voltar</button>
+          <button class="btn btn--ouro btn--flex" type="button" id="btn-enviar">
+            Enviar pedido pelo WhatsApp
+          </button>
+        </div>
+        <div class="etapa-erro" id="erro-etapa-4" hidden></div>
+
+        <p class="campo-ajuda mt-2">
+          O envio abre a conversa do WhatsApp com o resumo do pedido. Ele <strong>não</strong> confirma o
+          pedido automaticamente: a loja confirma após analisar disponibilidade, entrega e pagamento.
+        </p>
+      </section>
+    </form>
+
+    <!-- ---------------------------- RESUMO --------------------------- -->
+    <aside class="resumo-pedido" aria-label="Resumo do pedido">
+      <div class="resumo-pedido__topo">
+        <h2>Resumo</h2>
+        <a class="link-ouro" href="cardapio.html">Editar</a>
+      </div>
+      <div class="resumo-pedido__itens" id="resumo-itens"></div>
+      <div class="resumo-pedido__totais" id="resumo-totais"></div>
+    </aside>
+  </div>
+
+  <!-- =========================== CONFIRMAÇÃO ========================== -->
+  <section class="container" id="checkout-confirmado" hidden>
+    <div class="confirma-card">
+      <div class="confirma-card__ico" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>
+      </div>
+      <h2>Resumo enviado</h2>
+      <p class="confirma-card__numero" id="confirmado-numero"></p>
+      <p>
+        A conversa do WhatsApp foi aberta com o resumo do seu pedido. Para concluir, <strong>envie a
+        mensagem na conversa</strong>.
+      </p>
+      <p class="aviso-caixa aviso-caixa--amarelo" style="text-align:left">
+        <span aria-hidden="true">!</span>
+        <span>
+          <strong>Seu pedido ainda não está confirmado.</strong>
+          Abrir o WhatsApp não confirma o pedido. A loja confirma somente após analisar disponibilidade,
+          entrega e forma de pagamento — você recebe o retorno pelo mesmo número.
+        </span>
+      </p>
+      <p id="confirmado-detalhes" class="mudo" style="font-size:.86rem"></p>
+      <div class="confirma-card__acoes">
+        <a class="btn btn--ouro" href="cardapio.html">Fazer outro pedido</a>
+        <a class="btn btn--fantasma" href="index.html">Voltar ao início</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================== RODAPÉ ============================ -->
+<footer class="rodape">
+  <div class="container">
+    <div class="rodape__grade">
+      <div class="rodape__sobre">
+        <a class="marca" href="index.html" aria-label="Brasa Burger — início">
+          <svg class="marca__simbolo" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+            <path d="M20 4c0 5 3.4 6.6 6.2 9.4 1.9 1.9 3.3 4 3.3 6.9 0 4.7-3.9 8.6-8.8 8.6S11.9 25 11.9 20.3c0-2.7 1.2-4.8 3.1-6.6.4 1.7 1.2 2.8 2.5 3.4.9-3.6-.4-8.9 2.5-13.1z" fill="#F5A623"/>
+            <path d="M8.5 29.6h23c.4 0 .8.1 1.1.2-1.2 4.6-6.4 7.9-12.6 7.9S8.6 34.4 7.4 29.8c.3-.1.7-.2 1.1-.2z" fill="#C8322B"/>
+            <path d="M11.4 26.9h17.2a11 11 0 0 1-17.2 0z" fill="#E8B878" opacity=".9"/>
+          </svg>
+          <span class="marca__texto"><span>Brasa</span><span>Burger</span></span>
+        </a>
+        <p class="lead" data-loja="slogan">Sabor que impressiona.</p>
+        <p class="status-loja mt-2" data-rodape-status></p>
+      </div>
+
+      <div>
+        <h4>Navegação</h4>
+        <ul class="rodape__lista">
+          <li><a href="index.html">Início</a></li>
+          <li><a href="cardapio.html">Cardápio</a></li>
+          <li><a href="index.html#montar-combo">Montar combo</a></li>
+          <li><a href="index.html#delivery">Delivery</a></li>
+          <li><a href="admin.html">Painel administrativo</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Atendimento</h4>
+        <ul class="rodape__lista">
+          <li><span data-loja="endereco">—</span></li>
+          <li><span data-loja="whatsapp">—</span> <span class="mudo">WhatsApp</span></li>
+          <li><span data-loja="telefone">—</span> <span class="mudo">Telefone</span></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Horários</h4>
+        <ul class="horarios" data-loja="horarios"></ul>
+      </div>
+    </div>
+
+    <div class="rodape__pe">
+      <p>© <span data-ano>2026</span> <span id="rodape-loja-nome">Brasa Burger</span>. Todos os direitos reservados.</p>
+      <p>Seus dados são usados apenas para processar este pedido. · <a href="admin.html">Painel</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/store.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/pedidos.js"></script>
+<script src="js/checkout.js"></script>
+</body>
+</html>
